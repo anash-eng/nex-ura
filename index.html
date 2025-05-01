@@ -16,6 +16,27 @@
             --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
             --font-main: 'Poppins', sans-serif;
             --font-heading: 'Montserrat', sans-serif;
+        <h2>NEX Token Calculator</h2>
+<label for="usdInput">Enter USD Amount:</label>
+<input type="number" id="usdInput" placeholder="e.g., 100" />
+<button onclick="calculateTokens()">Calculate</button>
+<div class="result" id="result"></div>
+
+<script>
+  const tokenPrice = 0.001; // 1 NEX = $0.001
+
+  function calculateTokens() {
+    const usd = parseFloat(document.getElementById('usdInput').value);
+    if (!isNaN(usd) && usd > 0) {
+      const tokens = usd / tokenPrice;
+      document.getElementById('result').innerText =
+        `You will get approximately ${tokens.toLocaleString(undefined, {maximumFractionDigits: 0})} NEX tokens.`;
+    } else {
+      document.getElementById('result').innerText = "Please enter a valid USD amount.";
+    }
+  }
+</script>
+
         }
 
         * {
