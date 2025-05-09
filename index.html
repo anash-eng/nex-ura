@@ -1030,3 +1030,403 @@
     </script>
 </body>
 </html> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexura - Next-Gen Blockchain Ecosystem</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #22d3ee;
+            --accent: #f59e0b;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+            --font-main: 'Inter', sans-serif;
+            --font-heading: 'Poppins', sans-serif;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Base Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Modern Header */
+        .header {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.25rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 160px 0 80px;
+            background: var(--dark);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(15,23,42,0.9), rgba(99,102,241,0.2));
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            color: white;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            color: #e2e8f0;
+            font-size: 1.125rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+
+        /* Token Calculator */
+        .calculator {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            max-width: 480px;
+            margin: 2rem auto;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .calculator-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .calculator-header h3 {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .calculator-input-group {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .calculator-input {
+            flex: 1;
+            padding: 0.875rem 1.25rem;
+            border: 2px solid var(--primary);
+            border-radius: 0.75rem;
+            background: rgba(255,255,255,0.9);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .calculator-input:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(34,211,238,0.2);
+        }
+
+        .calculator-result {
+            text-align: center;
+            color: white;
+            font-size: 1.25rem;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 0.75rem;
+        }
+
+        /* Modern Card Design */
+        .feature-card {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Responsive Grid */
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .grid-cols-1 { grid-template-columns: repeat(1, 1fr); }
+        .grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+        .grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+
+        /* Mobile Navigation */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: var(--shadow-lg);
+                transform: translateY(-100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+            }
+            
+            .grid-cols-2,
+            .grid-cols-3 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Interactive Elements */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.75rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Animated Underline */
+        .underline-animation {
+            position: relative;
+        }
+
+        .underline-animation::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+
+        .underline-animation:hover::after {
+            width: 100%;
+        }
+    </style>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar container">
+            <a href="#" class="logo">
+                <div class="logo-icon">N</div>
+                <span>Nexura</span>
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenu">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <div class="nav-links" id="navLinks">
+                <a href="#about" class="underline-animation">About</a>
+                <a href="#features" class="underline-animation">Features</a>
+                <a href="#tokenomics" class="underline-animation">Tokenomics</a>
+                <a href="#contact" class="underline-animation">Contact</a>
+                <a href="#" class="btn btn-primary">Whitepaper</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Revolutionizing Blockchain Technology</h1>
+                    <p>Experience the future of decentralized ecosystems with AI-powered solutions</p>
+                    
+                    <div class="calculator">
+                        <div class="calculator-header">
+                            <h3>NEX Token Calculator</h3>
+                            <p>1 NEX = $0.001</p>
+                        </div>
+                        
+                        <div class="calculator-input-group">
+                            <input type="number" class="calculator-input" placeholder="Enter USD" id="usdInput">
+                            <button class="btn btn-primary" onclick="calculateTokens()">
+                                <i class="fas fa-calculator"></i> Calculate
+                            </button>
+                        </div>
+                        
+                        <div class="calculator-result" id="result">
+                            Enter amount to calculate
+                        </div>
+                        
+                        <button class="btn btn-primary" style="width: 100%">
+                            <i class="fab fa-ethereum"></i> Buy with MetaMask
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Add other sections here -->
+    </main>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenu = document.getElementById('mobileMenu');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenu.innerHTML = navLinks.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>'
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Token Calculator
+        const tokenPrice = 0.001;
+        
+        function calculateTokens() {
+            const usdInput = document.getElementById('usdInput');
+            const resultDiv = document.getElementById('result');
+            
+            const usd = parseFloat(usdInput.value);
+            if (!usd || usd <= 0) {
+                resultDiv.textContent = "Please enter a valid amount";
+                return;
+            }
+
+            const tokens = usd / tokenPrice;
+            resultDiv.innerHTML = `
+                You get: <strong>${tokens.toLocaleString()} NEX</strong><br>
+                <small>${(tokens/1000000000*100).toFixed(4)}% of total supply</small>
+            `;
+        }
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.feature-card').forEach((el) => observer.observe(el));
+    </script>
+</body>
+</html>
